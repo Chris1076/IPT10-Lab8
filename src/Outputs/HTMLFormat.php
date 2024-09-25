@@ -29,24 +29,24 @@ class HTMLFormat implements ProfileFormatter
             $output .= "<li>".$certificates["name"]."(".$certificates["date_earned"].")"."</li>";
         }
         $output .= "</ul>";
-        $output .= "<h2>Extracurricular Activities</h2>";
+        $output .= "<h2>Extracurricular Activities</h2><ul>";
         foreach( $profile->getExtracurricularActivities() as $activities) {
-            $output .=  "<p>".$activities["role"]."<br>".
-            $activities["organization"]."<br>".
-            $activities["start_date"]."<br>".
-            $activities["end_date"]."<br>".
-            $activities["description"]."</p>";
+            $output .=  "<li>".$activities["role"]." of ".
+            $activities["organization"]." (".
+            $activities["start_date"]." to ".
+            $activities["end_date"].") ".
+            $activities["description"]."</li>";
         }
-        $output .= "<h2>Languages</h2>";
+        $output .= "</ul><h2>Languages</h2><ul>";
         foreach( $profile->getLanguages() as $language) {
-            $output .=  "<p>".$language["language"]."--".$language["proficiency"]."</p>";
+            $output .=  "<li>".$language["language"]."--".$language["proficiency"]."</li>";
         }
-        $output .= "<h2>References</h2>";
+        $output .= "</ul><h2>References</h2>";
         foreach( $profile->getReferences() as $refs) {
-            $output .=  "<p>".$refs["name"]."<br>".
-            $refs["position"]."<br>".
-            $refs["company"]."<br>".
-            $refs["email"]."<br>".
+            $output .=  "<p>Name: ".$refs["name"]."<br>Position: ".
+            $refs["position"]."<br>Company: ".
+            $refs["company"]."<br>Email: ".
+            $refs["email"]."<br>Phone: ".
             $refs["phone_number"]."</p>";
         }
         $this->response = $output;
