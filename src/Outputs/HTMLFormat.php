@@ -31,11 +31,23 @@ class HTMLFormat implements ProfileFormatter
         $output .= "</ul>";
         $output .= "<h2>Extracurricular Activities</h2>";
         foreach( $profile->getExtracurricularActivities() as $activities) {
-            $output .=  "<p>".$activities["role"]."\n".
-            $activities["organization"]."\n".
-            $activities["start_date"]."\n".
-            $activities["end_date"]."\n".
+            $output .=  "<p>".$activities["role"]."<br>".
+            $activities["organization"]."<br>".
+            $activities["start_date"]."<br>".
+            $activities["end_date"]."<br>".
             $activities["description"]."</p>";
+        }
+        $output .= "<h2>Languages</h2>";
+        foreach( $profile->getLanguages() as $language) {
+            $output .=  "<p>".$language["language"]."--".$language["proficiency"]."</p>";
+        }
+        $output .= "<h2>References</h2>";
+        foreach( $profile->getReferences() as $refs) {
+            $output .=  "<p>".$refs["name"]."<br>".
+            $refs["position"]."<br>".
+            $refs["company"]."<br>".
+            $refs["email"]."<br>".
+            $refs["phone_number"]."</p>";
         }
         $this->response = $output;
     }
